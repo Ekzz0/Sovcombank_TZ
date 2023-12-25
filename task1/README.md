@@ -39,6 +39,6 @@
 
 **Confusion Matrix:**
 
-!(conf_matr)[./c_matrix.png]
+![plot](./c_matrix.png)
 
 ### Для получение прогноза по сырому файлу используется файл ```inference.py```
