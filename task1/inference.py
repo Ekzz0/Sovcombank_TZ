@@ -1,24 +1,20 @@
-import joblib
 import pandas as pd
 
-from utils import clean_text
+from utils.processing import clean_text
 
 
-def get_predict(df):
-    vectorizer = joblib.load('./models/tfidfconverter.pkl')
-    model = joblib.load('./models/randomforest.pkl')
-
+def get_predict(df: pd.DataFrame, vectorizer, model) -> pd.DataFrame:
     try:
         ucid = df.ucid
     except:
         print('Не хватает столбца ucid')
     else:
         try:
-            X, y = df.text_employer, df.ACTION_ITEM_RESULT_PRODUCT_NAME
+            X = df.text_employer
         except:
-            print('Не хватает столбцов text_employer или ACTION_ITEM_RESULT_PRODUCT_NAME')
+            print('Не хватает столбца text_employer')
         else:
-            # Очистка текста
+            # # Очистка текста
             documents = X.apply(clean_text)
 
             # TF-IDF
